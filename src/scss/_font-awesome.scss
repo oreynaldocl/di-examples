@@ -1,0 +1,12 @@
+// Allows overriding Font Awesome variables https://github.com/FortAwesome/Font-Awesome/blob/master/web-fonts-with-css/scss/_variables.scss
+
+// For loading the Web Fonts based on an absolute route instead of a relative route
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+
+// Importing main Font Awesome scss library
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+// Importing Font Awesome Web Fonts
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
