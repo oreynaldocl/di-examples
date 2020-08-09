@@ -26,6 +26,29 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+
+## Bootstrap files
+Install the following library
+```sh
+ng add @ng-bootstrap/ng-bootstrap
+```
+
+Create the following files
+```
+|- src/
+    |- scss/
+        |- _variables.scss
+```
+Add following lines in `src/styles.scss`
+```SCSS
+// VARIABLES
+@import './scss/_variables';
+
+// LIBRARIES
+@import '~bootstrap/scss/bootstrap';
+@import "./scss/_font-awesome";
+```
+
 ## FontAwesome files
 Install font awesome library. 
 ```sh
