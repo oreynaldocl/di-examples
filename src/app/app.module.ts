@@ -4,10 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { TodoFilterComponent } from './components/todo-filter/todo-filter.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { TodoAddComponent } from './components/todo-add/todo-add.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoListComponent,
+    TodoFilterComponent,
+    TodoItemComponent,
+    TodoAddComponent
   ],
   imports: [
     BrowserModule,
