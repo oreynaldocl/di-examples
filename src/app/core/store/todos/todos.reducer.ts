@@ -45,7 +45,7 @@ const todosReducer = createReducer(
 
   on(deleteItem, (state, action) => {
     const todos = [...state.todos];
-    todos.splice(action.index);
+    todos.splice(action.index, 1);
 
     return {
       ...state,

@@ -1,6 +1,9 @@
 <fieldset [disabled]="disabled">
-  <div class="row mb-1">
-    <div class="col-auto">
+  <div
+    class="row mb-1 py-1 todo-item"
+    [ngClass]="{ 'todo-item--done': item.done }"
+  >
+    <div class="col-auto pr-0">
       <label class="form-check-label custom-control custom-checkbox">
         <input
           type="checkbox"
@@ -11,14 +14,20 @@
         <span class="custom-control-label">&nbsp;</span>
       </label>
     </div>
-    <div class="col">
-      <span class="badge badge-info">{{ item.updatedAt | date: 'shortDate'}}</span>
-      <span class="ml-1 clickable" (dblclick)="enableEdit.emit()">{{ item.text }}</span>
+    <div class="col px-0">
+      <span class="badge badge-info font-italic text-small">{{ item.updatedAt | date: 'shortDate' }}</span>
+      <span
+        class="ml-1 clickable todo-item__text"
+        (dblclick)="!item.done && enableEdit.emit()"
+      >
+        {{ item.text }}
+      </span>
     </div>
     <div class="col-auto">
       <button
+        *ngIf="!item.done"
         type="button"
-        class="btn btn-link p-0"
+        class="btn btn-link p-0 text-action"
         (click)="enableEdit.emit()"
       >
         <i class="fas fa-edit"></i>
@@ -26,7 +35,8 @@
       </button>
       <button
         type="button"
-        class="btn p-0 ml-2 text-danger"
+        class="btn p-0 ml-2 text-danger text-action"
+        (click)="deleteItem.emit()"
       >
         <i class="fas fa-trash-alt"></i>
       </button>

@@ -14,6 +14,7 @@ import {
   getEditedIndex,
   isEditing,
   editItem,
+  deleteItem,
 } from 'src/app/core/store/todos';
 
 @Component({
@@ -44,7 +45,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
     ).subscribe(([index, isEditingParam]) => {
       this.editedIndex = index;
       this.isEditing = isEditingParam;
-      console.log(this.editedIndex, this.isEditing);
     });
   }
 
@@ -71,5 +71,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   callEditItem(item: TodoItem, index: number): void {
     this.store.dispatch(editItem({ item, index }));
+  }
+
+  callDeleteItem(index: number): void {
+    this.store.dispatch(deleteItem({ index }));
   }
 }

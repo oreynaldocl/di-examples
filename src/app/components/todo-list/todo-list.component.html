@@ -12,6 +12,7 @@
         [disabled]="isEditing"
         (changeDone)="changeDone(item, i)"
         (enableEdit)="enableEdit(i)"
+        (deleteItem)="callDeleteItem(i)"
       ></app-todo-item>
     </ng-template>
   </ng-template>

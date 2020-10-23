@@ -9,6 +9,7 @@ import { TodoItem } from 'src/app/core/models';
 })
 export class TodoItemComponent implements OnInit {
   @Output() changeDone = new EventEmitter<void>();
+  @Output() deleteItem = new EventEmitter<void>();
   @Output() enableEdit = new EventEmitter<void>();
 
   @Input() item: TodoItem;
