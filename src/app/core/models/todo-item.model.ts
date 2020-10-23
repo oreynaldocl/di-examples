@@ -1,6 +1,6 @@
 export interface TodoItem {
-  done: boolean;
+  done?: boolean;
   text: string;
-  createdAt: number;
-  updatedAt: number;
+  createdAt?: number;
+  updatedAt?: number;
 }

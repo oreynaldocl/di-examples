@@ -8,3 +8,13 @@ export const getTodoItems: MemoizedSelector<StoreState, TodoItem[]> = createSele
   (store: StoreState) => store.todos,
   (todos: TodosState) => todos.todos,
 );
+
+export const getEditedIndex: MemoizedSelector<StoreState, number> = createSelector(
+  (store: StoreState) => store.todos,
+  (todos: TodosState) => todos.editedIndex,
+);
+
+export const isEditing: MemoizedSelector<StoreState, boolean> = createSelector(
+  getEditedIndex,
+  (index) => index !== null,
+);

@@ -1,12 +1,14 @@
 import { createAction, props } from '@ngrx/store';
 import { TodoItem } from '../../models';
 
-export enum TodosType {
+enum TodosType {
   LoadItems = '[TODOS] Load Items',
   AddItem = '[TODOS] Add Item',
   EditItem = '[TODOS] Edit Item',
   DeleteItem = '[TODOS] Delete Item',
   SortItems = '[TODOS] Sort Items',
+  ChangeDone = '[TODOS] Change Done',
+  ChangeEditIndex = '[TODOS] Change Edit Index',
 }
 
 export const loadItems = createAction(
@@ -32,4 +34,14 @@ export const deleteItem = createAction(
 export const sortItems = createAction(
   TodosType.DeleteItem,
   props<{ attribute: string, typeField: string }>()
+);
+
+export const changeDone = createAction(
+  TodosType.ChangeDone,
+  props<{ done: boolean, index: number }>()
+);
+
+export const changeEditIndex = createAction(
+  TodosType.ChangeEditIndex,
+  props<{ index: number }>()
 );

@@ -1,10 +1,11 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { addItem, deleteItem, editItem, loadItems, sortItems } from './todos.actions';
+import { addItem, changeDone, changeEditIndex, deleteItem, editItem, loadItems, sortItems } from './todos.actions';
 import { TodosState } from './todos.state';
 
 export const initialState: TodosState = {
   todos: [],
+  editedIndex: null,
 };
 
 
@@ -19,17 +20,26 @@ const todosReducer = createReducer(
     ...state,
     todos: [
       ...state.todos,
-      action.item,
+      {
+        ...action.item,
+        done: false,
+        createdAt: new Date().getTime(),
+        updatedAt: new Date().getTime(),
+      },
     ],
   })),
 
-  on(editItem, (state, action) => {
+  on(editItem, (state, { index, item }) => {
     const todos = [...state.todos];
-    todos[action.index] = action.item;
+    todos[index] = {
+      ...item,
+      updatedAt: new Date().getTime(),
+    };
 
     return {
       ...state,
       todos,
+      editedIndex: null,
     };
   }),
 
@@ -43,8 +53,27 @@ const todosReducer = createReducer(
     };
   }),
 
+  on(changeDone, (state, { index, done }) => {
+    const todos = [...state.todos];
+    todos[index] = {
+      ...todos[index],
+      done,
+      updatedAt: new Date().getTime(),
+    };
+
+    return {
+      ...state,
+      todos,
+    };
+  }),
+
   on(sortItems, (state) => ({
     ...state,
+  })),
+
+  on(changeEditIndex, (state, { index }) => ({
+    ...state,
+    editedIndex: index,
   })),
 );
 

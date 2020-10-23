@@ -1,1 +1,35 @@
-<p>todo-item works!</p>
+<fieldset [disabled]="disabled">
+  <div class="row mb-1">
+    <div class="col-auto">
+      <label class="form-check-label custom-control custom-checkbox">
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          [checked]="item.done"
+          (click)="changeDone.emit()"
+        >
+        <span class="custom-control-label">&nbsp;</span>
+      </label>
+    </div>
+    <div class="col">
+      <span class="badge badge-info">{{ item.updatedAt | date: 'shortDate'}}</span>
+      <span class="ml-1 clickable" (dblclick)="enableEdit.emit()">{{ item.text }}</span>
+    </div>
+    <div class="col-auto">
+      <button
+        type="button"
+        class="btn btn-link p-0"
+        (click)="enableEdit.emit()"
+      >
+        <i class="fas fa-edit"></i>
+        edit
+      </button>
+      <button
+        type="button"
+        class="btn p-0 ml-2 text-danger"
+      >
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
+  </div>
+</fieldset>
