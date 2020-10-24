@@ -9,21 +9,3 @@
 .text-action {
   font-size: 0.75rem;
 }
-
-.todo-item {
-  &:hover {
-    background: darken(white, 10%);
-  }
-  .todo-item__text {
-    cursor: pointer;
-  }
-}
-
-.todo-item--done {
-  .todo-item__text {
-    text-decoration: line-through;
-    font-style: italic;
-    color: lighten($dark, 20%);
-    cursor: auto;
-  }
-}

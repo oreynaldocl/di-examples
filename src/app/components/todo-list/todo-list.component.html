@@ -1,21 +1,23 @@
 <!-- Items section -->
-<div>
-  <ng-template ngFor [ngForOf]="$todoItems | async" let-item let-i="index">
-    <app-todo-edit
-      *ngIf="item.isEditing; else viewItem"
+<app-todo-filter
+  class="mb-2"
+  (changeFilterTs)="changeUpdatedAfter($event)"
+></app-todo-filter>
+<ng-template ngFor [ngForOf]="$todoItems | async" let-item let-i="index">
+  <app-todo-edit
+    *ngIf="item.isEditing; else viewItem"
+    [item]="item"
+    (saveEdit)="callEditItem($event, i)"
+  ></app-todo-edit>
+  <ng-template #viewItem>
+    <app-todo-item
       [item]="item"
-      (saveEdit)="callEditItem($event, i)"
-    ></app-todo-edit>
-    <ng-template #viewItem>
-      <app-todo-item
-        [item]="item"
-        (changeDone)="changeDone(item, i)"
-        (enableEdit)="enableEdit(i)"
-        (deleteItem)="callDeleteItem(i)"
-      ></app-todo-item>
-    </ng-template>
+      (changeDone)="changeDone(item, i)"
+      (enableEdit)="enableEdit(i)"
+      (deleteItem)="callDeleteItem(i)"
+    ></app-todo-item>
   </ng-template>
-  <app-todo-add
-    (addItem)="callAddItem($event)"
-  ></app-todo-add>
-</div>
+</ng-template>
+<app-todo-add
+  (addItem)="callAddItem($event)"
+></app-todo-add>

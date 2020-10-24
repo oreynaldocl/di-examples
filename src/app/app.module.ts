@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,9 +10,8 @@ import { TodoFilterComponent } from './components/todo-filter/todo-filter.compon
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoAddComponent } from './components/todo-add/todo-add.component';
 
-import { todosReducer } from './core/store/todos';
-import { environment } from '../environments/environment';
 import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -30,15 +27,7 @@ import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    StoreModule.forRoot({ todos: todosReducer }, {
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictStateSerializability: true,
-        strictActionSerializability: true,
-      },
-    }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

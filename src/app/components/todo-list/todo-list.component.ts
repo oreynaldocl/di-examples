@@ -2,16 +2,18 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 import { TodoItem } from 'src/app/core/models';
 import { StoreState } from 'src/app/core/store/store.state';
 import {
-  getTodoItems,
   changeDone as changeDoneAction,
   addItem,
   editItem,
   deleteItem,
   enableEditItem,
+  getTodoItemsFiltered,
+  cancelAllEdits,
 } from 'src/app/core/store/todos';
 
 @Component({
@@ -22,8 +24,7 @@ import {
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   $todoItems: Observable<TodoItem[]>;
-  editedIndex: number;
-  isEditing: boolean;
+  updateAfter: number;
 
   private ngUnsubscribe = new Subject<void>();
 
@@ -32,7 +33,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.$todoItems = this.store.select(getTodoItems);
+    this.changeUpdatedAfter(0);
   }
 
   ngOnDestroy(): void {
@@ -62,5 +63,17 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   callDeleteItem(index: number): void {
     this.store.dispatch(deleteItem({ index }));
+  }
+
+  /**
+   * While testing I tried to make dynamic filter directly with selectors and async unsubscribe from previous Observable
+   */
+  changeUpdatedAfter(updatedAfter: number): void {
+    this.store.dispatch(cancelAllEdits());
+    this.$todoItems = this.store.select(getTodoItemsFiltered, { updatedAfter }).pipe(
+      finalize(() => {
+        console.log('bye bye', updatedAfter && new Date(updatedAfter));
+      })
+    );
   }
 }
