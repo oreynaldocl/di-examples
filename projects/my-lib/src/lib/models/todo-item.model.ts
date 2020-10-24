@@ -4,4 +4,5 @@ export interface TodoItem {
   createdAt?: number;
   updatedAt?: number;
   isEditing?: boolean;
+  index?: number;
 }

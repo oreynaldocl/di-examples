@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const limit = 5;
     const dayTimestamp = 1000 * 60 * 60 * 24;
-    const items: TodoItem[] = TodoItems;
+    let items: TodoItem[] = TodoItems;
     for (let i = 0; i < limit; i++) {
       const createdAt = (new Date()).getTime() - (dayTimestamp * (limit - i));
       items.push({
@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
         updatedAt: createdAt,
       });
     }
+    items = items.map((item, index) => ({ ...item, index }));
     this.store.dispatch(loadItems({ items }));
   }
 }

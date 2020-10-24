@@ -1,5 +1,5 @@
 import { TodoItem } from 'my-lib';
 
 export interface TodosState {
-  todos: TodoItem[];
+  todos: { [key: string]: TodoItem };
 }

@@ -9,15 +9,15 @@ export const getTodoState = createFeatureSelector<StoreState, TodosState>('todos
 
 export const getTodoItems: MemoizedSelector<StoreState, TodoItem[]> = createSelector(
   getTodoState,
-  (todos: TodosState) => todos.todos,
+  (todos: TodosState) => Object.values(todos.todos),
 );
 
 export const getTodoItemsFiltered = createSelector(
-  getTodoState,
-  (todos: TodosState, props: { updatedAfter: number }) => {
+  getTodoItems,
+  (todos: TodoItem[], props: { updatedAfter: number }) => {
     if (props.updatedAfter > 0) {
-      return todos.todos.filter(item => item.updatedAt > props.updatedAfter);
+      return todos.filter(item => item.updatedAt > props.updatedAfter);
     }
-    return todos.todos;
+    return todos;
   },
 );

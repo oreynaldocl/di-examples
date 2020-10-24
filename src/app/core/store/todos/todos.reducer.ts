@@ -13,7 +13,7 @@ import {
 import { TodosState } from './todos.state';
 
 export const initialState: TodosState = {
-  todos: [],
+  todos: {},
 };
 
 
@@ -21,24 +21,35 @@ const todosReducer = createReducer(
   initialState,
   on(loadItems, (state, action) => ({
     ...state,
-    todos: action.items,
+    todos: action.items.reduce(
+      (sub, item) => ({ ...sub, [item.index]: item }),
+      {},
+    ),
   })),
 
-  on(addItem, (state, action) => ({
-    ...state,
-    todos: [
+  on(addItem, (state, action) => {
+    const indexes = Object.keys(state.todos).map(index => +index);
+    const maxIndex = Math.max(...indexes);
+
+    const todos = {
       ...state.todos,
-      {
+      [maxIndex]: {
         ...action.item,
         done: false,
         createdAt: new Date().getTime(),
         updatedAt: new Date().getTime(),
+        index: maxIndex,
       },
-    ],
-  })),
+    };
+
+    return {
+      ...state,
+      todos,
+    };
+  }),
 
   on(editItem, (state, { index, item }) => {
-    const todos = [...state.todos];
+    const todos = { ...state.todos };
     todos[index] = {
       ...item,
       isEditing: false,
@@ -48,12 +59,11 @@ const todosReducer = createReducer(
     return {
       ...state,
       todos,
-      editedIndex: null,
     };
   }),
 
   on(enableEditItem, (state, { index }) => {
-    const todos = [...state.todos];
+    const todos = { ...state.todos };
     todos[index] = {
       ...todos[index],
       isEditing: true,
@@ -62,12 +72,14 @@ const todosReducer = createReducer(
     return {
       ...state,
       todos,
-      editedIndex: null,
     };
   }),
 
   on(cancelAllEdits, (state) => {
-    const todos = state.todos.map(item => ({ ...item, isEditing: false }));
+    const todos = { ...state.todos };
+    Object.keys(todos).forEach(key => {
+      todos[key] = { ...todos[key], isEditing: false };
+    });
 
     return {
       ...state,
@@ -76,8 +88,8 @@ const todosReducer = createReducer(
   }),
 
   on(deleteItem, (state, action) => {
-    const todos = [...state.todos];
-    todos.splice(action.index, 1);
+    const todos = { ...state.todos };
+    delete todos[action.index];
 
     return {
       ...state,
@@ -86,7 +98,7 @@ const todosReducer = createReducer(
   }),
 
   on(changeDone, (state, { index, done }) => {
-    const todos = [...state.todos];
+    const todos = { ...state.todos };
     todos[index] = {
       ...todos[index],
       done,

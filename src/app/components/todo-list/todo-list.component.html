@@ -3,18 +3,18 @@
   class="mb-2"
   (changeFilterTs)="changeUpdatedAfter($event)"
 ></lib-todo-filter>
-<ng-template ngFor [ngForOf]="$todoItems | async" let-item let-i="index">
+<ng-template ngFor [ngForOf]="$todoItems | async" let-item>
   <lib-todo-edit
     *ngIf="item.isEditing; else viewItem"
     [item]="item"
-    (saveEdit)="callEditItem($event, i)"
+    (saveEdit)="callEditItem($event, item.index)"
   ></lib-todo-edit>
   <ng-template #viewItem>
     <lib-todo-item
       [item]="item"
-      (changeDone)="changeDone(item, i)"
-      (enableEdit)="enableEdit(i)"
-      (deleteItem)="callDeleteItem(i)"
+      (changeDone)="changeDone(item, item.index)"
+      (enableEdit)="enableEdit(item.index)"
+      (deleteItem)="callDeleteItem(item.index)"
     ></lib-todo-item>
   </ng-template>
 </ng-template>
