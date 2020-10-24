@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
         updatedAt: createdAt,
       });
     }
+    console.log(items);
     this.store.dispatch(loadItems({ items }));
   }
 }

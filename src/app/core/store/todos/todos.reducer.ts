@@ -1,11 +1,19 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { addItem, changeDone, changeEditIndex, deleteItem, editItem, loadItems, sortItems } from './todos.actions';
+import {
+  addItem,
+  cancelAllEdits,
+  changeDone,
+  deleteItem,
+  editItem,
+  enableEditItem,
+  loadItems,
+  sortItems,
+} from './todos.actions';
 import { TodosState } from './todos.state';
 
 export const initialState: TodosState = {
   todos: [],
-  editedIndex: null,
 };
 
 
@@ -33,6 +41,7 @@ const todosReducer = createReducer(
     const todos = [...state.todos];
     todos[index] = {
       ...item,
+      isEditing: false,
       updatedAt: new Date().getTime(),
     };
 
@@ -40,6 +49,29 @@ const todosReducer = createReducer(
       ...state,
       todos,
       editedIndex: null,
+    };
+  }),
+
+  on(enableEditItem, (state, { index }) => {
+    const todos = [...state.todos];
+    todos[index] = {
+      ...todos[index],
+      isEditing: true,
+    };
+
+    return {
+      ...state,
+      todos,
+      editedIndex: null,
+    };
+  }),
+
+  on(cancelAllEdits, (state) => {
+    const todos = state.todos.map(item => ({ ...item, isEditing: false }));
+
+    return {
+      ...state,
+      todos,
     };
   }),
 
@@ -69,11 +101,6 @@ const todosReducer = createReducer(
 
   on(sortItems, (state) => ({
     ...state,
-  })),
-
-  on(changeEditIndex, (state, { index }) => ({
-    ...state,
-    editedIndex: index,
   })),
 );
 

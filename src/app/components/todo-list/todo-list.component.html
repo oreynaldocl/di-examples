@@ -2,14 +2,13 @@
 <div>
   <ng-template ngFor [ngForOf]="$todoItems | async" let-item let-i="index">
     <app-todo-edit
-      *ngIf="editedIndex === i; else viewItem"
+      *ngIf="item.isEditing; else viewItem"
       [item]="item"
       (saveEdit)="callEditItem($event, i)"
     ></app-todo-edit>
     <ng-template #viewItem>
       <app-todo-item
         [item]="item"
-        [disabled]="isEditing"
         (changeDone)="changeDone(item, i)"
         (enableEdit)="enableEdit(i)"
         (deleteItem)="callDeleteItem(i)"
@@ -17,7 +16,6 @@
     </ng-template>
   </ng-template>
   <app-todo-add
-    [disabled]="isEditing"
     (addItem)="callAddItem($event)"
   ></app-todo-add>
 </div>

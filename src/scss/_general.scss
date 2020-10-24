@@ -22,6 +22,8 @@
 .todo-item--done {
   .todo-item__text {
     text-decoration: line-through;
+    font-style: italic;
+    color: lighten($dark, 20%);
     cursor: auto;
   }
 }

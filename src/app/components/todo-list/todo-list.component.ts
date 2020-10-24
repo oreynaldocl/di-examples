@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { Observable, Subject, combineLatest } from 'rxjs';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 import { TodoItem } from 'src/app/core/models';
 import { StoreState } from 'src/app/core/store/store.state';
@@ -10,11 +9,9 @@ import {
   getTodoItems,
   changeDone as changeDoneAction,
   addItem,
-  changeEditIndex,
-  getEditedIndex,
-  isEditing,
   editItem,
   deleteItem,
+  enableEditItem,
 } from 'src/app/core/store/todos';
 
 @Component({
@@ -36,16 +33,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.$todoItems = this.store.select(getTodoItems);
-    combineLatest([
-      this.store.select(getEditedIndex),
-      this.store.select(isEditing),
-    ]).pipe(
-      takeUntil(this.ngUnsubscribe),
-      debounceTime(0),
-    ).subscribe(([index, isEditingParam]) => {
-      this.editedIndex = index;
-      this.isEditing = isEditingParam;
-    });
   }
 
   ngOnDestroy(): void {
@@ -66,7 +53,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   enableEdit(index: number): void {
-    this.store.dispatch(changeEditIndex({ index }));
+    this.store.dispatch(enableEditItem({ index }));
   }
 
   callEditItem(item: TodoItem, index: number): void {

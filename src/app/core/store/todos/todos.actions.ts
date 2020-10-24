@@ -5,10 +5,11 @@ enum TodosType {
   LoadItems = '[TODOS] Load Items',
   AddItem = '[TODOS] Add Item',
   EditItem = '[TODOS] Edit Item',
+  EnableEditItem = '[TODOS] Enable Edit Item',
   DeleteItem = '[TODOS] Delete Item',
   SortItems = '[TODOS] Sort Items',
   ChangeDone = '[TODOS] Change Done',
-  ChangeEditIndex = '[TODOS] Change Edit Index',
+  CancelAllEdits = '[TODOS] Cancel All Edits',
 }
 
 export const loadItems = createAction(
@@ -18,17 +19,23 @@ export const loadItems = createAction(
 
 export const addItem = createAction(
   TodosType.AddItem,
-  props<{item: TodoItem}>()
+  props<{ item: TodoItem }>()
 );
 
 export const editItem = createAction(
   TodosType.EditItem,
-  props<{item: TodoItem, index: number}>()
+  props<{ item: TodoItem, index: number }>()
 );
+
+export const enableEditItem = createAction(
+  TodosType.EnableEditItem,
+  props<{ index: number }>()
+);
+// EnableEditItem
 
 export const deleteItem = createAction(
   TodosType.DeleteItem,
-  props<{index: number}>()
+  props<{ index: number }>()
 );
 
 export const sortItems = createAction(
@@ -41,7 +48,6 @@ export const changeDone = createAction(
   props<{ done: boolean, index: number }>()
 );
 
-export const changeEditIndex = createAction(
-  TodosType.ChangeEditIndex,
-  props<{ index: number }>()
+export const cancelAllEdits = createAction(
+  TodosType.CancelAllEdits,
 );
