@@ -13,6 +13,7 @@ import { TodoAddComponent } from './components/todo-add/todo-add.component';
 
 import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
 import { CoreModule } from './core/core.module';
+import { MyLibModule } from 'my-lib';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CoreModule } from './core/core.module';
     // For enable pipes
     TranslateModule,
     CoreModule,
+    MyLibModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
