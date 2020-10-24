@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -16,12 +16,17 @@ import {
   getTodoItemsFiltered,
   cancelAllEdits,
 } from 'src/app/core/store/todos';
+import { CustomDatepickerI18n } from 'src/app/core/services';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styles: [
-  ]
+  providers: [
+    {
+      provide: NgbDatepickerI18n,
+      useClass: CustomDatepickerI18n,
+    },
+  ],
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   $todoItems: Observable<TodoItem[]>;
