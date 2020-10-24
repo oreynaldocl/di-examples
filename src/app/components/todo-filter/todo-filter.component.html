@@ -7,7 +7,7 @@
     ></ngb-datepicker>
   </ng-template>
   <div class="col-sm-6">
-    Updated after:
+    {{ 'Updated after:' | translate }}
     <button
       #dateSelector="ngbPopover"
       type="button"
@@ -17,13 +17,14 @@
       placement="bottom-left"
       autoClose="outside"
     >
-      <span *ngIf="!isValidTs">No filter</span>
-      <span *ngIf="isValidTs">{{ selectedTimeTs | date: 'shortDate' }}</span>
+      <span *ngIf="!isValidTs">{{ 'No filter' | translate }}</span>
+      <span *ngIf="isValidTs">{{ selectedTimeTs | date: 'mediumDate' }}</span>
     </button>
     <button
       *ngIf="isValidTs"
       type="button"
       class="btn pl-2 text-primary text-action"
+      [title]="'Remove filter' | translate"
       (click)="removeFilter()"
     >
       <i class="fas fa-times"></i>

@@ -31,11 +31,12 @@
         (click)="enableEdit.emit()"
       >
         <i class="fas fa-edit"></i>
-        edit
+        {{ 'edit' | translate }}
       </button>
       <button
         type="button"
         class="btn p-0 ml-2 text-danger text-action"
+        title="{{ 'Delete' | translate }}"
         (click)="deleteItem.emit()"
       >
         <i class="fas fa-trash-alt"></i>

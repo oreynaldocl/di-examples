@@ -1,10 +1,20 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { LOCALE_ID, NgModule, Optional, SkipSelf } from '@angular/core';
+import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { DateUtils } from './services';
+import {
+  CustomMissingTranslationHandler,
+  DateUtils,
+  WebpackTranslateLoader,
+  LanguageService,
+} from './services';
 import { todosReducer } from './store/todos';
 import { environment } from '../../environments/environment';
+
+export function LocaleFactory(locale: LanguageService): string {
+  return locale.languageSetting;
+}
 
 @NgModule({
   imports: [
@@ -17,9 +27,26 @@ import { environment } from '../../environments/environment';
       },
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+
+    TranslateModule.forRoot({
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: CustomMissingTranslationHandler,
+      },
+      loader: {
+        provide: TranslateLoader,
+        useClass: WebpackTranslateLoader,
+      }
+    }),
   ],
   providers: [
     DateUtils,
+    LanguageService,
+    {
+      provide: LOCALE_ID,
+      deps: [LanguageService],
+      useFactory: LocaleFactory,
+    },
   ],
 })
 export class CoreModule {

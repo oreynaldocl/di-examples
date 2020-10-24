@@ -16,21 +16,22 @@
         type="text"
         class="form-control"
         name="todo-text"
-        placeholder="Edit Todo"
+        placeholder="{{ 'Edit Todo' | translate }}"
         [(ngModel)]="item.text"
       >
     </div>
     <div class="col-auto">
       <button
         type="submit"
-        class="btn btn-primary ml-2"
+        class="btn btn-success ml-2"
         [disabled]="todoTextTrimmed.length === 0"
       >
-          <i class="fas fa-save"></i> save
+          <i class="fas fa-save"></i> {{ 'save' | translate }}
       </button>
       <button
         type="button"
         class="btn p-0 ml-2 text-primary text-action"
+        [title]="'Cancel edit' | translate"
         (click)="cancelEdit()"
       >
         <i class="fas fa-times"></i>
