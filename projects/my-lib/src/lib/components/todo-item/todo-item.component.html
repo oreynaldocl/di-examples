@@ -31,12 +31,12 @@
         (click)="enableEdit.emit()"
       >
         <i class="fas fa-edit"></i>
-        {{ 'edit' | translate }}
+        {{ i18n.stream('edit') | async }}
       </button>
       <button
         type="button"
         class="btn p-0 ml-2 text-danger text-action"
-        title="{{ 'Delete' | translate }}"
+        title="{{ i18n.stream('Delete') | async }}"
         (click)="deleteItem.emit()"
       >
         <i class="fas fa-trash-alt"></i>

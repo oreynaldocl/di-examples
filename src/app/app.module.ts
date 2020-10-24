@@ -4,25 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { LibDateUtils, LibI18nService, MyLibModule } from 'my-lib';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
-import { TodoFilterComponent } from './components/todo-filter/todo-filter.component';
-import { TodoItemComponent } from './components/todo-item/todo-item.component';
-import { TodoAddComponent } from './components/todo-add/todo-add.component';
 
-import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
 import { CoreModule } from './core/core.module';
-import { MyLibModule } from 'my-lib';
+import { CustomI18nService, DateUtils } from './core/services';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
-    TodoFilterComponent,
-    TodoItemComponent,
-    TodoAddComponent,
-    TodoEditComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +28,17 @@ import { MyLibModule } from 'my-lib';
     CoreModule,
     MyLibModule,
   ],
-  providers: [],
+  providers: [
+    DateUtils,
+    {
+      provide: LibDateUtils,
+      useExisting: DateUtils,
+    },
+    {
+      provide: LibI18nService,
+      useClass: CustomI18nService,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,14 +1,21 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { NgbDateStruct, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
-import { DateUtils } from 'src/app/core/services';
+import { LibDateUtils } from '../../services/date.utils';
+import { LibI18nService } from '../../services/i18n.service';
 
 @Component({
-  selector: 'app-todo-filter',
+  selector: 'lib-todo-filter',
   templateUrl: './todo-filter.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoFilterComponent implements OnInit {
+export class LibTodoFilterComponent implements OnInit {
   @Output() changeFilterTs = new EventEmitter<number>();
   selectedDate: NgbDateStruct;
   selectedTimeTs = 0;
@@ -18,7 +25,8 @@ export class TodoFilterComponent implements OnInit {
   }
 
   constructor(
-    private dateUtils: DateUtils,
+    private dateUtils: LibDateUtils,
+    public i18n: LibI18nService,
   ) { }
 
   ngOnInit(): void {

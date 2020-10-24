@@ -7,7 +7,7 @@
     ></ngb-datepicker>
   </ng-template>
   <div class="col-sm-6">
-    {{ 'Updated after:' | translate }}
+    {{ i18n.stream('Updated after:') | async }}
     <button
       #dateSelector="ngbPopover"
       type="button"
@@ -17,14 +17,14 @@
       placement="bottom-left"
       autoClose="outside"
     >
-      <span *ngIf="!isValidTs">{{ 'No filter' | translate }}</span>
+      <span *ngIf="!isValidTs">{{ i18n.stream('No filter') | async }}</span>
       <span *ngIf="isValidTs">{{ selectedTimeTs | date: 'mediumDate' }}</span>
     </button>
     <button
       *ngIf="isValidTs"
       type="button"
       class="btn pl-2 text-primary text-action"
-      [title]="'Remove filter' | translate"
+      [title]="i18n.stream('Remove filter') | async"
       (click)="removeFilter()"
     >
       <i class="fas fa-times"></i>
