@@ -1,0 +1,2 @@
+// execute this to change language in browser console
+localStorage.setItem('language', 'es');
