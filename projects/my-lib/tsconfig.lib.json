@@ -17,6 +17,7 @@
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "enableResourceInlining": true,
+    // Added for avoiding following error https://github.com/angular/vscode-ng-language-service/issues/735
     "enableIvy": false
   },
   "exclude": [

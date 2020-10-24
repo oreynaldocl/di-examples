@@ -8,9 +8,12 @@ import {
   DateUtils,
   WebpackTranslateLoader,
   LanguageService,
+  CustomI18nService,
 } from './services';
 import { todosReducer } from './store/todos';
 import { environment } from '../../environments/environment';
+import { LibDateUtils } from 'projects/my-lib/src/public-api';
+import { LibI18nService } from 'my-lib';
 
 export function LocaleFactory(locale: LanguageService): string {
   return locale.languageSetting;
@@ -40,13 +43,21 @@ export function LocaleFactory(locale: LanguageService): string {
     }),
   ],
   providers: [
-    DateUtils,
     LanguageService,
     {
       provide: LOCALE_ID,
       deps: [LanguageService],
       useFactory: LocaleFactory,
     },
+    {
+      provide: LibI18nService,
+      useClass: CustomI18nService,
+    },
+    DateUtils,
+    {
+      provide: LibDateUtils,
+      useExisting: DateUtils,
+    }
   ],
 })
 export class CoreModule {
