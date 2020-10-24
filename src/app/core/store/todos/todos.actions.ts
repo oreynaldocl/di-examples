@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { TodoItem } from '../../models';
+
+import { TodoItem } from 'my-lib';
 
 enum TodosType {
   LoadItems = '[TODOS] Load Items',

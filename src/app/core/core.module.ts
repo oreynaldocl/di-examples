@@ -5,7 +5,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import {
   CustomMissingTranslationHandler,
-  DateUtils,
   WebpackTranslateLoader,
   LanguageService,
 } from './services';
@@ -40,7 +39,6 @@ export function LocaleFactory(locale: LanguageService): string {
     }),
   ],
   providers: [
-    DateUtils,
     LanguageService,
     {
       provide: LOCALE_ID,

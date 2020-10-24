@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import TodoItems from '../assets/todo-items.json';
-import { TodoItem } from './core/models';
+
+import { TodoItem } from 'my-lib';
+
 import { StoreState } from './core/store/store.state';
 import { loadItems } from './core/store/todos';
+import TodoItems from '../assets/todo-items.json';
 
 @Component({
   selector: 'app-root',

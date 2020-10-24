@@ -1,2 +1,6 @@
 // execute this to change language in browser console
 localStorage.setItem('language', 'es');
+
+// remove file
+https://stackoverflow.com/questions/60559934/error-in-ngcc-is-already-running-at-process-with-id-5196
+rm -f node_modules/@angular/compiler-cli/ngcc/__ngcc_lock_file__

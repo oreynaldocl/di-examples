@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
-import { TodoItem } from 'src/app/core/models';
+import { TodoItem } from 'my-lib';
+
 import { StoreState } from 'src/app/core/store/store.state';
 import {
   changeDone as changeDoneAction,

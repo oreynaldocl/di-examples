@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { LibI18nService } from '../../services/i18n.service';
+
 @Component({
-  selector: 'app-todo-add',
+  selector: 'lib-todo-add',
   templateUrl: './todo-add.component.html',
 })
-export class TodoAddComponent implements OnInit {
+export class LibTodoAddComponent implements OnInit {
   @Output() addItem = new EventEmitter<string>();
 
   @Input() disabled: boolean;
@@ -15,7 +17,9 @@ export class TodoAddComponent implements OnInit {
     return this.todoText.trim();
   }
 
-  constructor() { }
+  constructor(
+    public i18n: LibI18nService,
+  ) { }
 
   ngOnInit(): void {
   }

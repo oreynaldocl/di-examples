@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { TodoItem } from '../../models';
+import { TodoItem } from 'my-lib';
+
 import { StoreState } from '../store.state';
 import { TodosState } from './todos.state';
 

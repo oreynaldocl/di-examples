@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "i18n:init": "ngx-translate-extract --input ./src --output ./src/assets/i18n/template.json --key-as-default-value --replace --format json",
-  "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/{en,es}.json --clean --format json"
+    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/{en,es}.json --clean --format json"
   },
   "private": true,
   "dependencies": {
@@ -49,6 +49,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.3.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "ng-packagr": "^10.1.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",

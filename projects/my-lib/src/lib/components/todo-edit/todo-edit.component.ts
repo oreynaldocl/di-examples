@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TodoItem } from 'src/app/core/models';
+import { TodoItem } from '../../models';
+
+import { LibI18nService } from '../../services/i18n.service';
 
 @Component({
-  selector: 'app-todo-edit',
+  selector: 'lib-todo-edit',
   templateUrl: './todo-edit.component.html',
 })
-export class TodoEditComponent implements OnInit {
+export class LibTodoEditComponent implements OnInit {
   @Output() saveEdit = new EventEmitter<TodoItem>();
 
   @Input()
@@ -24,7 +26,9 @@ export class TodoEditComponent implements OnInit {
   private localItem: TodoItem;
   private originalItem: TodoItem;
 
-  constructor() { }
+  constructor(
+    public i18n: LibI18nService,
+  ) { }
 
   ngOnInit(): void {
   }
