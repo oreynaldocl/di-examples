@@ -33,7 +33,7 @@ const todosReducer = createReducer(
 
     const todos = {
       ...state.todos,
-      [maxIndex]: {
+      [maxIndex + 1]: {
         ...action.item,
         done: false,
         createdAt: new Date().getTime(),

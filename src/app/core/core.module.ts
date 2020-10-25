@@ -35,7 +35,7 @@ export function LocaleFactory(locale: LanguageService): string {
       loader: {
         provide: TranslateLoader,
         useClass: WebpackTranslateLoader,
-      }
+      },
     }),
   ],
   providers: [

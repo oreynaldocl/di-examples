@@ -6,7 +6,7 @@ import { LibDateUtils } from 'my-lib';
 @Injectable()
 export class DateUtils extends LibDateUtils {
   constructor() {
-    console.log('Create DateUtils');
+    console.log('Created DateUtils');
     super();
   }
 

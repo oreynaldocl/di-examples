@@ -11,6 +11,7 @@ export class CustomI18nService extends LibI18nService {
   ) {
     super();
   }
+
   stream(key: string | Array<string>, interpolateParams?: Object): Observable<string | any> {
     return this.translate.stream(key, interpolateParams);
   }

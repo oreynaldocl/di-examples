@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { finalize } from 'rxjs/operators';
 
 import { TodoItem } from 'my-lib';
 
@@ -76,7 +75,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
    * While testing I tried to make dynamic filter directly with selectors and async unsubscribe from previous Observable
    */
   changeUpdatedAfter(updatedAfter: number): void {
-    console.log('Using date utils', this.dateUtils.parseToDateStruct(new Date(updatedAfter)));
+    console.log('Using date utils', updatedAfter, this.dateUtils.parseToDateStruct(new Date(updatedAfter)));
     this.store.dispatch(cancelAllEdits());
     this.$todoItems = this.store.select(getTodoItemsFiltered, { updatedAfter });
   }
