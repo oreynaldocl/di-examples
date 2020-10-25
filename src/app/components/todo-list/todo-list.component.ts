@@ -16,7 +16,7 @@ import {
   getTodoItemsFiltered,
   cancelAllEdits,
 } from 'src/app/core/store/todos';
-import { CustomDatepickerI18n } from 'src/app/core/services';
+import { CustomDatepickerI18n, DateUtils } from 'src/app/core/services';
 
 @Component({
   selector: 'app-todo-list',
@@ -36,6 +36,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<StoreState>,
+    private dateUtils: DateUtils,
   ) { }
 
   ngOnInit(): void {
@@ -75,11 +76,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
    * While testing I tried to make dynamic filter directly with selectors and async unsubscribe from previous Observable
    */
   changeUpdatedAfter(updatedAfter: number): void {
+    console.log('Using date utils', this.dateUtils.parseToDateStruct(new Date(updatedAfter)));
     this.store.dispatch(cancelAllEdits());
-    this.$todoItems = this.store.select(getTodoItemsFiltered, { updatedAfter }).pipe(
-      finalize(() => {
-        console.log('bye bye', updatedAfter && new Date(updatedAfter));
-      })
-    );
+    this.$todoItems = this.store.select(getTodoItemsFiltered, { updatedAfter });
   }
 }

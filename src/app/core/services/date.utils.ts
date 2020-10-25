@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import { LibDateUtils } from 'my-lib';
+
 @Injectable()
-export class DateUtils {
-  constructor() { }
+export class DateUtils extends LibDateUtils {
+  constructor() {
+    console.log('Create DateUtils');
+    super();
+  }
 
   parseToDateStruct(date: Date): NgbDateStruct {
     return {

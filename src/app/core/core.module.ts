@@ -15,11 +15,6 @@ export function LocaleFactory(locale: LanguageService): string {
   return locale.languageSetting;
 }
 
-const myConfig: any = {
-  myValue: 33,
-  myString: 'asdfasdf'
-};
-
 @NgModule({
   imports: [
     StoreModule.forRoot({ todos: todosReducer }, {
