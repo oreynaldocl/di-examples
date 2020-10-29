@@ -75,3 +75,14 @@ Add following lines in `src/styles.scss`
 @import "~bootstrap/scss/bootstrap.scss";
 @import "./scss/_font-awesome";
 ```
+
+# MY-LIB Library
+Following steps in angular guide
+https://angular.io/guide/creating-libraries
+
+```
+ng generate library my-lib
+ng build my-lib
+ng test my-lib
+ng lint my-lib
+```

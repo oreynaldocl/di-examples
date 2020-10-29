@@ -1,0 +1,46 @@
+<fieldset [disabled]="disabled">
+  <div
+    class="row mb-1 py-1 todo-item"
+    [ngClass]="{ 'todo-item--done': item.done }"
+  >
+    <div class="col-auto pr-0">
+      <label class="form-check-label custom-control custom-checkbox">
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          [checked]="item.done"
+          (click)="changeDone.emit()"
+        >
+        <span class="custom-control-label">&nbsp;</span>
+      </label>
+    </div>
+    <div class="col px-0">
+      <span class="badge badge-info font-italic text-small">{{ item.updatedAt | date: 'shortDate' }}</span>
+      <span
+        class="ml-1 clickable todo-item__text"
+        (dblclick)="!item.done && enableEdit.emit()"
+      >
+        {{ item.text }}
+      </span>
+    </div>
+    <div class="col-auto">
+      <button
+        *ngIf="!item.done"
+        type="button"
+        class="btn btn-link p-0 text-action"
+        (click)="enableEdit.emit()"
+      >
+        <i class="fas fa-edit"></i>
+        {{ i18n.stream('edit') | async }}
+      </button>
+      <button
+        type="button"
+        class="btn p-0 ml-2 text-danger text-action"
+        title="{{ i18n.stream('Delete') | async }}"
+        (click)="deleteItem.emit()"
+      >
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
+  </div>
+</fieldset>

@@ -1,0 +1,51 @@
+{
+	"New Todo": "Nueva tarea",
+	"add": "agregar",
+	"Edit Todo": "Editar tarea",
+	"save": "guardar",
+	"Cancel edit": "cancelar edición",
+	"Updated after:": "Actualizados despúes:",
+	"No filter": "Sin filtrar",
+	"Remove filter": "Quitar filtro",
+	"edit": "editar",
+	"Delete": "Eliminar",
+	"date-picker": {
+    "months": [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+    ],
+    "shortMonths": [
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr",
+      "May",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dic"
+    ],
+    "shortWeekdays": [
+      "Lu",
+      "Ma",
+      "Mi",
+      "Ju",
+      "Vi",
+      "Sa",
+      "Do"
+    ]
+  }
+}

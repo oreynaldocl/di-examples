@@ -1,0 +1,51 @@
+{
+	"New Todo": "New Todo",
+	"add": "add",
+	"Edit Todo": "Edit Todo",
+	"save": "save",
+	"Cancel edit": "Cancel Todo",
+	"Updated after:": "Updated After",
+	"No filter": "No filter",
+	"Remove filter": "Remove filter",
+	"edit": "edit",
+	"Delete": "Delete",
+	"date-picker": {
+    "months": [
+      "January" ,
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "shortMonths": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "shortWeekdays": [
+      "Mo",
+      "Tu",
+      "We",
+      "Th",
+      "Fr",
+      "Sa",
+      "Su"
+    ]
+	}
+}

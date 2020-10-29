@@ -1,0 +1,33 @@
+<div class="row">
+  <ng-template #dateSelectorContent>
+    <ngb-datepicker
+      name="selectedDate"
+      [(ngModel)]="selectedDate"
+      (select)="selectDate($event, dateSelector);"
+    ></ngb-datepicker>
+  </ng-template>
+  <div class="col-sm-12">
+    {{ i18n.stream('Updated after:') | async }}
+    <button
+      #dateSelector="ngbPopover"
+      type="button"
+      class="btn py-0 px-1 btn-link datetime-selector"
+      [ngbPopover]="dateSelectorContent"
+      popoverTitle="Select day"
+      placement="bottom-left"
+      autoClose="outside"
+    >
+      <span *ngIf="!isValidTs">{{ i18n.stream('No filter') | async }}</span>
+      <span *ngIf="isValidTs">{{ selectedTimeTs | date: 'mediumDate' }}</span>
+    </button>
+    <button
+      *ngIf="isValidTs"
+      type="button"
+      class="btn pl-2 text-primary text-action"
+      [title]="i18n.stream('Remove filter') | async"
+      (click)="removeFilter()"
+    >
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>
