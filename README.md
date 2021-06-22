@@ -2,30 +2,35 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
-## Development server
+# Patterns
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Facade
+Used facade implementation for loosely coupled.
+Also Dependency Inversion Principle implemented using just abstract classes.
+* [DateFacadeUtils](projects/my-lib/src/lib/services/date-facade.utils.ts)
+* Implementation: [CustomI18nService](src/app/core/services/i18n/custom-i18n.service.ts)
+* [I18nFacadeService](projects/my-lib/src/lib/services/date-facade.utils.ts)
+* Implementation: [DateUtils](src/app/core/services/date.utils.ts)
 
-## Code scaffolding
+## DI Framework
+Used DI Framework for adding dependencies. Used different ways to start dependencies
+[CoreModule](src/app/core/core.module.ts)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Flux Architectural Pattern
+Implementation of [Flux Pattern](https://facebook.github.io/flux/docs/in-depth-overview/) for saving todo elements.
+The specific implementation is ngrx, without effects.
 
-## Build
+## Start application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Build library
+First is required to build library with following command
+`npx ng build my-lib`
 
-## Running unit tests
+### Start application
+Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
+If you want to test in different machine in same network
+`npm run start -- --host 0.0.0.0`
 
 ## Bootstrap files
 Install the following library

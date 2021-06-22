@@ -16,7 +16,6 @@ export const initialState: TodosState = {
   todos: {},
 };
 
-
 const todosReducer = createReducer(
   initialState,
   on(loadItems, (state, action) => ({

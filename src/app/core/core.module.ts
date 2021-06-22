@@ -3,10 +3,14 @@ import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ng
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { DateFacadeUtils, I18nFacadeService } from 'my-lib';
+
 import {
   CustomMissingTranslationHandler,
   WebpackTranslateLoader,
   LanguageService,
+  CustomI18nService,
+  DateUtils,
 } from './services';
 import { todosReducer } from './store/todos';
 import { environment } from '../../environments/environment';
@@ -39,11 +43,23 @@ export function LocaleFactory(locale: LanguageService): string {
     }),
   ],
   providers: [
-    LanguageService,
+    {
+      provide: LanguageService,
+      useClass: LanguageService,
+    },
     {
       provide: LOCALE_ID,
       deps: [LanguageService],
       useFactory: LocaleFactory,
+    },
+    {
+      provide: DateFacadeUtils,
+      useValue: new DateUtils(),
+    },
+    CustomI18nService, // short hand for { provide: , useClass: }
+    {
+      provide: I18nFacadeService,
+      useExisting: CustomI18nService,
     },
   ],
 })
