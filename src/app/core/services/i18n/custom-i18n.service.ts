@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
-import { LibI18nService } from 'my-lib';
+import { I18nFacadeService } from 'my-lib';
 
 @Injectable()
-export class CustomI18nService extends LibI18nService {
+export class CustomI18nService extends I18nFacadeService {
   constructor(
     private translate: TranslateService,
   ) {
@@ -14,5 +14,9 @@ export class CustomI18nService extends LibI18nService {
 
   stream(key: string | Array<string>, interpolateParams?: Object): Observable<string | any> {
     return this.translate.stream(key, interpolateParams);
+  }
+
+  get(key: string | Array<string>, interpolateParams?: Object): Observable<string | any> {
+    return this.translate.get(key, interpolateParams);
   }
 }

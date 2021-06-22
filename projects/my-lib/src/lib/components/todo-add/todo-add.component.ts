@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { LibI18nService } from '../../services/i18n.service';
+import { I18nFacadeService } from '../../services/i18n-facade.service';
 
 @Component({
   selector: 'lib-todo-add',
@@ -18,7 +18,7 @@ export class LibTodoAddComponent implements OnInit {
   }
 
   constructor(
-    public i18n: LibI18nService,
+    public i18n: I18nFacadeService,
   ) { }
 
   ngOnInit(): void {

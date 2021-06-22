@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-import { LibDateUtils } from 'my-lib';
+import { DateFacadeUtils } from 'my-lib';
 
 @Injectable()
-export class DateUtils extends LibDateUtils {
+export class DateUtils extends DateFacadeUtils {
   constructor() {
     console.log('Created DateUtils');
     super();

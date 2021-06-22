@@ -3,7 +3,7 @@ import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 
-import { TodoItem } from 'my-lib';
+import { TodoItem, DateFacadeUtils } from 'my-lib';
 
 import { StoreState } from 'src/app/core/store/store.state';
 import {
@@ -15,7 +15,7 @@ import {
   getTodoItemsFiltered,
   cancelAllEdits,
 } from 'src/app/core/store/todos';
-import { CustomDatepickerI18n, DateUtils } from 'src/app/core/services';
+import { CustomDatepickerI18n } from 'src/app/core/services';
 
 @Component({
   selector: 'app-todo-list',
@@ -35,7 +35,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<StoreState>,
-    private dateUtils: DateUtils,
+    private dateUtils: DateFacadeUtils,
   ) { }
 
   ngOnInit(): void {

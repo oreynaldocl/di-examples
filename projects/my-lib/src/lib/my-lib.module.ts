@@ -7,7 +7,6 @@ import { LibTodoAddComponent } from './components/todo-add/todo-add.component';
 import { LibTodoEditComponent } from './components/todo-edit/todo-edit.component';
 import { LibTodoFilterComponent } from './components/todo-filter/todo-filter.component';
 import { LibTodoItemComponent } from './components/todo-item/todo-item.component';
-import { LibDateUtils } from './services/date.utils';
 
 @NgModule({
   declarations: [

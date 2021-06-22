@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { NgbDateStruct, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
-import { LibDateUtils } from '../../services/date.utils';
-import { LibI18nService } from '../../services/i18n.service';
+import { DateFacadeUtils } from '../../services/date-facade.utils';
+import { I18nFacadeService } from '../../services/i18n-facade.service';
 
 @Component({
   selector: 'lib-todo-filter',
@@ -25,8 +25,8 @@ export class LibTodoFilterComponent implements OnInit {
   }
 
   constructor(
-    private dateUtils: LibDateUtils,
-    public i18n: LibI18nService,
+    private dateUtils: DateFacadeUtils,
+    public i18n: I18nFacadeService,
   ) { }
 
   ngOnInit(): void {

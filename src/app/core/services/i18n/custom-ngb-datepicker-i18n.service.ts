@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
+
+import { I18nFacadeService } from 'my-lib';
 
 import { LanguageService } from './language.service';
 
@@ -23,7 +24,7 @@ export class CustomDatepickerI18n extends NgbDatepickerI18n {
 
   constructor(
     private languageService: LanguageService,
-    private translate: TranslateService,
+    private translate: I18nFacadeService,
   ) {
     super();
     this.language = this.languageService.languageSetting;

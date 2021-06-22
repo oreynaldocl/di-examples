@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { LibDateUtils, LibI18nService, MyLibModule } from 'my-lib';
+import { DateFacadeUtils, I18nFacadeService, MyLibModule } from 'my-lib';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,13 +29,12 @@ import { CustomI18nService, DateUtils } from './core/services';
     MyLibModule,
   ],
   providers: [
-    DateUtils,
     {
-      provide: LibDateUtils,
-      useExisting: DateUtils,
+      provide: DateFacadeUtils,
+      useClass: DateUtils,
     },
     {
-      provide: LibI18nService,
+      provide: I18nFacadeService,
       useClass: CustomI18nService,
     },
   ],

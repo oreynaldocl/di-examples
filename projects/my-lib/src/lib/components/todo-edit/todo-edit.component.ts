@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TodoItem } from '../../models';
 
-import { LibI18nService } from '../../services/i18n.service';
+import { I18nFacadeService } from '../../services/i18n-facade.service';
 
 @Component({
   selector: 'lib-todo-edit',
@@ -27,7 +27,7 @@ export class LibTodoEditComponent implements OnInit {
   private originalItem: TodoItem;
 
   constructor(
-    public i18n: LibI18nService,
+    public i18n: I18nFacadeService,
   ) { }
 
   ngOnInit(): void {

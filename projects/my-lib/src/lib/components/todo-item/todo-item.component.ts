@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { TodoItem } from '../../models';
 
-import { LibI18nService } from '../../services/i18n.service';
+import { I18nFacadeService } from '../../services/i18n-facade.service';
 
 @Component({
   selector: 'lib-todo-item',
@@ -24,7 +24,7 @@ export class LibTodoItemComponent implements OnInit {
   @Input() disabled: boolean;
 
   constructor(
-    public i18n: LibI18nService,
+    public i18n: I18nFacadeService,
   ) { }
 
   ngOnInit(): void {
