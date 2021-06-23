@@ -33,17 +33,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.changeUpdatedAfter(0);
-
-    this.todoItems$ = combineLatest([
-      this.store.select(TodosStore.getTodoItems),
-      this.store.select(TodosStore.getTodoItemsDone),
-    ]).pipe(
-      takeUntil(this.ngUnsubscribe),
-      map(([todos, doneTodos]) => ({
-        all: todos.length,
-        done: doneTodos.length,
-      })),
-    );
+    this.subscribeAllItems();
   }
 
   ngOnDestroy(): void {
@@ -78,5 +68,18 @@ export class TodoListComponent implements OnInit, OnDestroy {
   changeUpdatedAfter(updatedAfter: number): void {
     this.store.dispatch(TodosStore.cancelAllEdits());
     this.todoItemsFiltered$ = this.store.select(TodosStore.getTodoItemsFiltered, { updatedAfter });
+  }
+
+  private subscribeAllItems(): void {
+    this.todoItems$ = combineLatest([
+      this.store.select(TodosStore.getTodoItems),
+      this.store.select(TodosStore.getTodoItemsDone),
+    ]).pipe(
+      takeUntil(this.ngUnsubscribe),
+      map(([todos, doneTodos]) => ({
+        all: todos.length,
+        done: doneTodos.length,
+      })),
+    );
   }
 }

@@ -11,7 +11,10 @@ import {
   WebpackTranslateLoader,
   LanguageService,
   CustomI18nService,
+  DateSecondUtils,
   DateUtils,
+  BaseTodosService,
+  TodosService,
 } from './services';
 import { reducer as  todosReducer } from './store/todos/todos.reducer';
 import { environment } from '../../environments/environment';
@@ -59,13 +62,18 @@ export function LocaleFactory(locale: LanguageService): string {
     },
     {
       provide: DateFacadeUtils,
-      useValue: new DateUtils(),
+      // useValue: new DateUtils(),
+      useValue: new DateSecondUtils(),
     },
     CustomI18nService, // short hand for { provide: , useClass: }
     {
       provide: I18nFacadeService,
       useExisting: CustomI18nService,
     },
+    {
+      provide: BaseTodosService,
+      useClass: TodosService,
+    }
   ],
 })
 export class CoreModule {

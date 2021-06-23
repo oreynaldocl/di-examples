@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { TodoItem } from 'my-lib';
-import TodoItems from 'src/assets/todo-items.json';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class TodosService {
+import TodoItems from 'src/assets/todo-items.json';
+import { BaseTodosService } from './base-todos.service';
+
+@Injectable()
+export class TodosService extends BaseTodosService {
 
   getTodos(): Observable<TodoItem[]> {
     const limit = 5;

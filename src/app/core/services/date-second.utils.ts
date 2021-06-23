@@ -4,17 +4,16 @@ import { NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { DateFacadeUtils } from 'my-lib';
 
 @Injectable()
-export class DateUtils extends DateFacadeUtils {
+export class DateSecondUtils extends DateFacadeUtils {
   constructor() {
     super();
   }
 
   parseToDateStruct(date: Date): NgbDateStruct {
-    return {
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate(),
-    };
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return NgbDate.from({ year, month, day });
   }
 
   parseToDate(model: NgbDateStruct): Date {

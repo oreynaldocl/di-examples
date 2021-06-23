@@ -18,7 +18,7 @@ import {
   loadItemsFailed,
   loadItemsSuccess,
 } from './todos.actions';
-import { TodosService } from '../../services';
+import { BaseTodosService } from '../../services';
 
 @Injectable()
 export class TodosEffects {
@@ -59,6 +59,6 @@ export class TodosEffects {
     private actions$: Actions,
     private toastr: ToastrService,
     private i18n: I18nFacadeService,
-    private todoService: TodosService,
+    private todoService: BaseTodosService,
   ) { }
 }
