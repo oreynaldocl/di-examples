@@ -6,7 +6,6 @@ import { DateFacadeUtils } from 'my-lib';
 @Injectable()
 export class DateUtils extends DateFacadeUtils {
   constructor() {
-    console.log('Created DateUtils');
     super();
   }
 

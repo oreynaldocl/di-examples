@@ -12,6 +12,11 @@ export const getTodoItems: MemoizedSelector<StoreState, TodoItem[]> = createSele
   (todos: TodosState) => Object.values(todos.todos),
 );
 
+export const getTodoItemsDone: MemoizedSelector<StoreState, TodoItem[]> = createSelector(
+  getTodoItems,
+  (todos) => todos.filter(({ done }) => done),
+);
+
 export const getTodoItemsFiltered = createSelector(
   getTodoItems,
   (todos: TodoItem[], props: { updatedAfter: number }) => {

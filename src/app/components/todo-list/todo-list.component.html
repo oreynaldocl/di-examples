@@ -3,7 +3,7 @@
   class="mb-2"
   (changeFilterTs)="changeUpdatedAfter($event)"
 ></lib-todo-filter>
-<ng-template ngFor [ngForOf]="$todoItems | async" let-item>
+<ng-template ngFor [ngForOf]="todoItemsFiltered$ | async" let-item>
   <lib-todo-edit
     *ngIf="item.isEditing; else viewItem"
     [item]="item"
@@ -18,6 +18,14 @@
     ></lib-todo-item>
   </ng-template>
 </ng-template>
+
+<div class="mb-3" *ngIf="todoItems$ | async as todos2">
+  <div class="border-top border-bottom py-2">
+    {{ todos2.done }} /
+    {{ todos2.all }}
+  </div>
+</div>
+
 <lib-todo-add
   (addItem)="callAddItem($event)"
 ></lib-todo-add>

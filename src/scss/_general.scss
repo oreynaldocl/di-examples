@@ -9,3 +9,7 @@
 .text-action {
   font-size: 0.75rem;
 }
+
+.custom-control-label::after {
+  cursor: pointer;
+}

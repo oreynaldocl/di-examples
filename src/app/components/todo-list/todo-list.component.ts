@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 
 import { TodoItem } from 'my-lib';
 
 import { StoreState } from 'src/app/core/store/store.state';
 import { TodosStore } from 'src/app/core/store/todos';
 import { CustomDatepickerI18n } from 'src/app/core/services';
+import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todo-list',
@@ -20,7 +21,8 @@ import { CustomDatepickerI18n } from 'src/app/core/services';
   ],
 })
 export class TodoListComponent implements OnInit, OnDestroy {
-  $todoItems: Observable<TodoItem[]>;
+  todoItemsFiltered$: Observable<TodoItem[]>;
+  todoItems$: Observable<{ all: number, done: number }>;
   updateAfter: number;
 
   private ngUnsubscribe = new Subject<void>();
@@ -31,6 +33,17 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.changeUpdatedAfter(0);
+
+    this.todoItems$ = combineLatest([
+      this.store.select(TodosStore.getTodoItems),
+      this.store.select(TodosStore.getTodoItemsDone),
+    ]).pipe(
+      takeUntil(this.ngUnsubscribe),
+      map(([todos, doneTodos]) => ({
+        all: todos.length,
+        done: doneTodos.length,
+      })),
+    );
   }
 
   ngOnDestroy(): void {
@@ -64,6 +77,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   changeUpdatedAfter(updatedAfter: number): void {
     this.store.dispatch(TodosStore.cancelAllEdits());
-    this.$todoItems = this.store.select(TodosStore.getTodoItemsFiltered, { updatedAfter });
+    this.todoItemsFiltered$ = this.store.select(TodosStore.getTodoItemsFiltered, { updatedAfter });
   }
 }
