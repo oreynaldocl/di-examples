@@ -3,7 +3,7 @@ import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/s
 import { TodoItem } from 'my-lib';
 
 import { StoreState } from '../store.state';
-import { TodosState } from './todos.state';
+import { TodosState } from './todos.reducer';
 
 export const getTodoState = createFeatureSelector<StoreState, TodosState>('todos');
 

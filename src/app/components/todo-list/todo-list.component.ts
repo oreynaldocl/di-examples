@@ -3,18 +3,10 @@ import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 
-import { TodoItem, DateFacadeUtils } from 'my-lib';
+import { TodoItem } from 'my-lib';
 
 import { StoreState } from 'src/app/core/store/store.state';
-import {
-  changeDone as changeDoneAction,
-  addItem,
-  editItem,
-  deleteItem,
-  enableEditItem,
-  getTodoItemsFiltered,
-  cancelAllEdits,
-} from 'src/app/core/store/todos';
+import { TodosStore } from 'src/app/core/store/todos';
 import { CustomDatepickerI18n } from 'src/app/core/services';
 
 @Component({
@@ -35,7 +27,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<StoreState>,
-    private dateUtils: DateFacadeUtils,
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +39,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   changeDone(item: TodoItem, index: number): void {
-    this.store.dispatch(changeDoneAction({
+    this.store.dispatch(TodosStore.changeDone({
       index,
       done: !item.done,
     }));
@@ -56,27 +47,23 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   callAddItem(text: string): void {
     const item: TodoItem = { text };
-    this.store.dispatch(addItem({ item }));
+    this.store.dispatch(TodosStore.addItem({ item }));
   }
 
   enableEdit(index: number): void {
-    this.store.dispatch(enableEditItem({ index }));
+    this.store.dispatch(TodosStore.enableEditItem({ index }));
   }
 
   callEditItem(item: TodoItem, index: number): void {
-    this.store.dispatch(editItem({ item, index }));
+    this.store.dispatch(TodosStore.editItem({ item, index }));
   }
 
   callDeleteItem(index: number): void {
-    this.store.dispatch(deleteItem({ index }));
+    this.store.dispatch(TodosStore.deleteItem({ index }));
   }
 
-  /**
-   * While testing I tried to make dynamic filter directly with selectors and async unsubscribe from previous Observable
-   */
   changeUpdatedAfter(updatedAfter: number): void {
-    console.log('Using date utils', updatedAfter, this.dateUtils.parseToDateStruct(new Date(updatedAfter)));
-    this.store.dispatch(cancelAllEdits());
-    this.$todoItems = this.store.select(getTodoItemsFiltered, { updatedAfter });
+    this.store.dispatch(TodosStore.cancelAllEdits());
+    this.$todoItems = this.store.select(TodosStore.getTodoItemsFiltered, { updatedAfter });
   }
 }

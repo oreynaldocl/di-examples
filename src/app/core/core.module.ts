@@ -12,7 +12,7 @@ import {
   CustomI18nService,
   DateUtils,
 } from './services';
-import { todosReducer } from './store/todos';
+import { reducer as  todosReducer } from './store/todos/todos.reducer';
 import { environment } from '../../environments/environment';
 
 export function LocaleFactory(locale: LanguageService): string {

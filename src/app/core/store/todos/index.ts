@@ -1,4 +1,7 @@
-export * from './todos.actions';
-export * from './todos.selector';
-export * from './todos.state';
-export { reducer as todosReducer } from './todos.reducer';
+import * as TodosStore from './todos.store';
+import { TodosState } from './todos.reducer';
+
+export {
+  TodosState,
+  TodosStore,
+}

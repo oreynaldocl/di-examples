@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { TodoItem } from 'my-lib';
 
 import { StoreState } from './core/store/store.state';
-import { loadItems } from './core/store/todos';
+import { TodosStore } from './core/store/todos';
 import TodoItems from '../assets/todo-items.json';
 
 @Component({
@@ -31,6 +31,6 @@ export class AppComponent implements OnInit {
       });
     }
     items = items.map((item, index) => ({ ...item, index }));
-    this.store.dispatch(loadItems({ items }));
+    this.store.dispatch(TodosStore.loadItems({ items }));
   }
 }

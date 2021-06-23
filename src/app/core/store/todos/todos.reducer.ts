@@ -1,5 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import { TodoItem } from 'my-lib';
+
 import {
   addItem,
   cancelAllEdits,
@@ -10,7 +12,10 @@ import {
   loadItems,
   sortItems,
 } from './todos.actions';
-import { TodosState } from './todos.state';
+
+export interface TodosState {
+  todos: { [key: string]: TodoItem };
+}
 
 export const initialState: TodosState = {
   todos: {},
