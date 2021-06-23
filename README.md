@@ -15,10 +15,12 @@ Also Dependency Inversion Principle implemented using just abstract classes.
 ## DI Framework
 Used DI Framework for adding dependencies. Used different ways to start dependencies
 [CoreModule](src/app/core/core.module.ts)
+* [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection)
 
 ## Flux Architectural Pattern
 Implementation of [Flux Pattern](https://facebook.github.io/flux/docs/in-depth-overview/) for saving todo elements.
-The specific implementation is ngrx, without effects.
+The specific implementation is ngrx.
+* [Ngrx store](https://ngrx.io/guide/store)
 
 ## Start application
 
