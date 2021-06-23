@@ -19,4 +19,8 @@ export class CustomI18nService extends I18nFacadeService {
   get(key: string | Array<string>, interpolateParams?: Object): Observable<string | any> {
     return this.translate.get(key, interpolateParams);
   }
+
+  instant(key: string | Array<string>, interpolateParams?: Object): string {
+    return this.translate.instant(key, interpolateParams);
+  }
 }

@@ -2,6 +2,7 @@ import { LOCALE_ID, NgModule, Optional, SkipSelf } from '@angular/core';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 import { DateFacadeUtils, I18nFacadeService } from 'my-lib';
 
@@ -14,6 +15,7 @@ import {
 } from './services';
 import { reducer as  todosReducer } from './store/todos/todos.reducer';
 import { environment } from '../../environments/environment';
+import { TodosEffects } from './store/todos/todos.effects';
 
 export function LocaleFactory(locale: LanguageService): string {
   return locale.languageSetting;
@@ -29,6 +31,9 @@ export function LocaleFactory(locale: LanguageService): string {
         strictActionSerializability: true,
       },
     }),
+    EffectsModule.forRoot([
+      TodosEffects,
+    ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 
     TranslateModule.forRoot({

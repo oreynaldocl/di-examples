@@ -30,8 +30,7 @@
         class="btn btn-link p-0 text-action"
         (click)="enableEdit.emit()"
       >
-        <i class="fas fa-edit"></i>
-        {{ i18n.stream('edit') | async }}
+        <i class="fas fa-edit fa-2x"></i>
       </button>
       <button
         type="button"
@@ -39,7 +38,7 @@
         title="{{ i18n.stream('Delete') | async }}"
         (click)="deleteItem.emit()"
       >
-        <i class="fas fa-trash-alt"></i>
+        <i class="fas fa-trash-alt fa-2x"></i>
       </button>
     </div>
   </div>

@@ -4,6 +4,8 @@ import { TodoItem } from 'my-lib';
 
 enum TodosType {
   LoadItems = '[TODOS] Load Items',
+  LoadItemsSuccess = '[TODOS] Load Items Success',
+  LoadItemsFailed = '[TODOS] Load Items Failed',
   AddItem = '[TODOS] Add Item',
   EditItem = '[TODOS] Edit Item',
   EnableEditItem = '[TODOS] Enable Edit Item',
@@ -11,11 +13,21 @@ enum TodosType {
   SortItems = '[TODOS] Sort Items',
   ChangeDone = '[TODOS] Change Done',
   CancelAllEdits = '[TODOS] Cancel All Edits',
+  DisplaySuccess = '[TODOS] Display Success',
 }
 
 export const loadItems = createAction(
   TodosType.LoadItems,
-  props<{items: TodoItem[]}>()
+);
+
+export const loadItemsFailed = createAction(
+  TodosType.LoadItemsFailed,
+  props<{ error: Error }>()
+);
+
+export const loadItemsSuccess = createAction(
+  TodosType.LoadItemsSuccess,
+  props<{ todos: TodoItem[] }>()
 );
 
 export const addItem = createAction(
@@ -51,4 +63,9 @@ export const changeDone = createAction(
 
 export const cancelAllEdits = createAction(
   TodosType.CancelAllEdits,
+);
+
+export const displaySuccess = createAction(
+  TodosType.DisplaySuccess,
+  props<{ message: string }>()
 );

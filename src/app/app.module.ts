@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { MyLibModule } from 'my-lib';
 
@@ -24,6 +26,9 @@ import { CoreModule } from './core/core.module';
     NgbModule,
     // For enable pipes
     TranslateModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+
     CoreModule,
     MyLibModule,
   ],

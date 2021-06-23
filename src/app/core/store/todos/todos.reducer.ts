@@ -10,22 +10,37 @@ import {
   editItem,
   enableEditItem,
   loadItems,
+  loadItemsFailed,
+  loadItemsSuccess,
   sortItems,
 } from './todos.actions';
 
 export interface TodosState {
   todos: { [key: string]: TodoItem };
+  loading: boolean;
 }
 
 export const initialState: TodosState = {
   todos: {},
+  loading: false,
 };
 
 const todosReducer = createReducer(
   initialState,
-  on(loadItems, (state, action) => ({
+  on(loadItems, state => ({
     ...state,
-    todos: action.items.reduce(
+    loading: true,
+  })),
+
+  on(loadItemsFailed, state => ({
+    ...state,
+    loading: false,
+  })),
+
+  on(loadItemsSuccess, (state, { todos }) => ({
+    ...state,
+    loading: false,
+    todos: todos.reduce(
       (sub, item) => ({ ...sub, [item.index]: item }),
       {},
     ),

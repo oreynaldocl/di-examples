@@ -9,6 +9,7 @@ import { Observable, of } from 'rxjs';
 export abstract class I18nFacadeService {
   abstract stream(key: string | Array<string>, interpolateParams?: Object): Observable<string | any>;
   abstract get(key: string | Array<string>, interpolateParams?: Object): Observable<string | any>;
+  abstract instant(key: string | Array<string>, interpolateParams?: Object): string;
 }
 
 @Injectable()
@@ -19,11 +20,19 @@ export class I18nFacadeServiceDefault extends I18nFacadeService {
   }
 
   stream(key: string | Array<string>, _interpolateParams?: Object): Observable<string | any> {
-    return of(`*${key}`);
+    return of(this.getInvalidKey(key));
   }
 
   get(key: string | Array<string>, _interpolateParams?: Object): Observable<string | any> {
-    return of(`*${key}`);
+    return of(this.getInvalidKey(key));
+  }
+
+  instant(key: string | Array<string>, _interpolateParams?: Object): string {
+    return this.getInvalidKey(key);
+  }
+
+  private getInvalidKey(key: string | Array<string>): string {
+    return `*${key}`;
   }
 }
 
